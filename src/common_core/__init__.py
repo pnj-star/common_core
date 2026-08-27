@@ -25,7 +25,7 @@ from .observability import Observability
 from .protocols import QueryRequest, QueryResult
 from .security import INJECTION_PATTERNS, check_safety, mask_pii, normalize_query
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = [
     "AuthConfig",

@@ -181,7 +181,7 @@ class RedisCache:
                 self.key(scope, material, tenant_id=tenant_id, kb_id=kb_id)
             )
         except Exception as exc:
-            logger.debug("cache get failed (degraded to None): %s", exc)
+            logger.debug("缓存写入失败，该错误已被忽略: %s", exc)
             return None
 
     def set(
@@ -211,7 +211,7 @@ class RedisCache:
             )
             return True
         except Exception as exc:
-            logger.debug("cache set failed (ignored): %s", exc)
+            logger.debug("缓存写入失败，该错误已被忽略: %s", exc)
             return False
 
     def delete(
@@ -236,7 +236,7 @@ class RedisCache:
                 )
             )
         except Exception as exc:
-            logger.debug("cache delete failed (ignored): %s", exc)
+            logger.debug("缓存删除失败，该异常已被忽略: %s", exc)
             return False
 
     def ping(self) -> bool:
@@ -262,5 +262,5 @@ class RedisCache:
             try:
                 self._client.close()
             except Exception:
-                logger.debug("redis close failed (ignored)", exc_info=True)
+                logger.debug("Redis 连接关闭失败，异常已被忽略", exc_info=True)
             self._client = None
